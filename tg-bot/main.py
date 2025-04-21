@@ -10,7 +10,7 @@ from telegram.ext import (
     ContextTypes,
 )
 from datetime import datetime
-
+import asyncio
 import html_parser
 import llm_connection
 import antispam
@@ -93,10 +93,13 @@ async def handle_question(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
     await update.message.reply_chat_action(action="typing")
     try:
-        response = await context.application.run_async(
-            llm_connection.chain.run,
-            data=user_data[user_id]["text"],
-            question=question
+        loop = asyncio.get_running_loop()
+        response = await loop.run_in_executor(
+            None,
+            lambda: llm_connection.chain.invoke(
+                data=user_data[user_id]["text"],
+                question=question
+            )
         )
         await update.message.reply_text(response)
     except Exception as e:
