@@ -43,6 +43,7 @@ python main.py
 ```
 <br>
 ### Логика работы программы (тизер решения) и схема антиспама
+
 ![Диаграмма без названия drawio-3](https://github.com/user-attachments/assets/7bc7bdd6-ef67-414c-82f6-ec9867155fd4)
 <br>
 
