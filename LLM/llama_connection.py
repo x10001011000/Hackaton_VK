@@ -1,8 +1,14 @@
+import os
+from dotenv import load_dotenv
 from langchain_community.llms import Ollama
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
-# Подключение к Ollama через ngrok
+# Загрузка переменных из .env
+load_dotenv()
+ollama_host = os.getenv("OLLAMA_HOST")
+
+# Подключение к Ollama
 llm = Ollama(base_url=ollama_host, model="llama3.2")
 
 # Шаблон промпта
