@@ -45,7 +45,7 @@ python main.py
 ```
 <br>
 
-### Логика работы программы (тизер решения)
+## Логика работы программы (тизер решения)
 <br>
 
 <img width="404" alt="схема1" src="https://github.com/user-attachments/assets/88e11c30-f0b6-4584-a067-0f872b8afa74" />
@@ -53,7 +53,7 @@ python main.py
 <br>
 <br>
 
-### Схема антиспама
+## Схема антиспама
 
 <br>
 
