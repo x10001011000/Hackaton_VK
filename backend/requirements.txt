@@ -6,7 +6,7 @@ aiohttp>=3.8.0
 python-dotenv>=1.0.0
 
 # Работа с данными
-psycopg2-binary>=2.9.5
+asyncpg>=0.25.0
 redis>=4.5.0
 orjson>=3.8.0
 unstructured>=0.6.0
