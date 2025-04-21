@@ -1,4 +1,6 @@
 import logging
+import os
+from dotenv import load_dotenv
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import (
     Application,
@@ -7,10 +9,17 @@ from telegram.ext import (
     filters,
     ContextTypes,
 )
-from datetime import datetime, timedelta
+from datetime import datetime
+
 import html_parser
 import llm_connection
 import antispam
+
+# Загрузка переменных из .env
+load_dotenv()
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+user_data = eval(os.getenv("USER_DATA", "{}"))
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -27,12 +36,13 @@ SITES = [
     "Литература",
     "Таблицы"
 ]
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if update_request_stats(update.effective_user.id):
+    if antispam.update_request_stats(update.effective_user.id):
         until = user_data[update.effective_user.id]["banned_until"].strftime("%H:%M:%S")
         await update.message.reply_text(f"Лимит запросов. Попробуйте после {until}.")
         return
-    
+
     buttons = [[site] for site in SITES]
     await update.message.reply_text(
         "Выберите источник информации:",
@@ -41,23 +51,23 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def handle_site_selection(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.effective_user.id
-    
-    if update_request_stats(user_id):
+
+    if antispam.update_request_stats(user_id):
         until = user_data[user_id]["banned_until"].strftime("%H:%M:%S")
         await update.message.reply_text(f"Лимит запросов. Попробуйте после {until}.")
         return
-    
+
     site_name = update.message.text
     if site_name not in SITES:
         await update.message.reply_text("Пожалуйста, выберите источник из списка.")
         return
-    
+
     await update.message.reply_text(f"Загружаю данные из '{site_name}'...")
     try:
         text = html_parser.get_site_pages_text(site_name)
         user_data[user_id].update({"text": text, "site": site_name})
         await update.message.reply_text(
-            f"Готово! Теперь задайте вопрос о '{site_name}'.",
+            f"Готово! Теперь задайте вопрос из области сайта'{site_name}'.",
             reply_markup=ReplyKeyboardRemove()
         )
     except Exception as e:
@@ -66,21 +76,21 @@ async def handle_site_selection(update: Update, context: ContextTypes.DEFAULT_TY
 
 async def handle_question(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.effective_user.id
-    
+
     if user_id not in user_data or "text" not in user_data[user_id]:
         await update.message.reply_text("Сначала выберите источник через /start")
         return
-    
-    if update_request_stats(user_id):
+
+    if antispam.update_request_stats(user_id):
         until = user_data[user_id]["banned_until"].strftime("%H:%M:%S")
         await update.message.reply_text(f"Лимит запросов. Попробуйте после {until}.")
         return
-    
+
     question = update.message.text
-    if contains_spam(question):
+    if antispam.contains_spam(question):
         await update.message.reply_text("Запрос содержит запрещённые слова.")
         return
-    
+
     await update.message.reply_chat_action(action="typing")
     try:
         response = await context.application.run_async(
@@ -93,14 +103,13 @@ async def handle_question(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         logger.error(f"Ошибка LLM: {e}")
         await update.message.reply_text("Ошибка генерации ответа.")
 
-
 def main() -> None:
-    application = Application.builder().token("ВАШ_ТОКЕН").build()
-    
+    application = Application.builder().token(BOT_TOKEN).build()
+
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.Text(SITES), handle_site_selection))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_question))
-    
+
     application.run_polling()
 
 if __name__ == "__main__":
