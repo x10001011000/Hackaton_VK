@@ -3,3 +3,4 @@ beautifulsoup4
 langchain
 langchain-community
 ollama
+python-telegram-bot
