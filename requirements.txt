@@ -1,6 +1,7 @@
+python-dotenv
 psycopg2-binary
 beautifulsoup4
 langchain
 langchain-community
 ollama
-python-telegram-bot
+python-telegram-bot==20.3
