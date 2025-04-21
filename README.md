@@ -1,9 +1,9 @@
 # Hackaton_VK
 Чат-бот на базе LLM (llama 3.2) для поиска информации в VK Tek.
 
-• *LLM/llama.py* - подключение к llama 3.2 <br>
-• *html_parser/html_parser.py* - извлечение текста из HTML-страниц (хранящихся в PostgreSQL) <br>
-• *tg-bot/tg-bot.py* - инициализация бота ?и ответы на вопросы?<br>
+• *LLM/**llama.py*** - подключение к llama 3.2 <br>
+• *html_parser/**html_parser.py*** - извлечение текста из HTML-страниц, хранящихся в PostgreSQL <br>
+• *tg-bot/**tg-bot.py*** - инициализация бота ?и ответы на вопросы?<br>
 
 ## Установка зависимостей
 ```bash
