@@ -12,7 +12,7 @@
 pip install -r requirements.txt
 ```
 ## Телеграм-бот
-@VKTekSearch_bot
+@VKTekSearch_bot <br>
 *https://t.me/VKTekSearch_bot*
 ### Пример запроса 
 ```
