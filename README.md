@@ -8,7 +8,9 @@
 • tg-bot/***main.py*** - инициализация бота, логгирование и обработка<br>
 <br>
 • tg-bot/***antispam.py*** - проверка на спам запросов<br>
-
+<br>
+• backend/ - папка с бэкендом
+<br>
 ## Установка зависимостей
 ```bash
 pip install -r requirements.txt
@@ -43,9 +45,17 @@ python main.py
 ```
 <br>
 
-### Логика работы программы (тизер решения) и схема антиспама
+### Логика работы программы (тизер решения)
 <br>
-![Диаграмма без названия drawio-3](https://github.com/user-attachments/assets/7bc7bdd6-ef67-414c-82f6-ec9867155fd4)
+
+<img width="404" alt="схема1" src="https://github.com/user-attachments/assets/88e11c30-f0b6-4584-a067-0f872b8afa74" />
+
+### Схема антиспама
+<br>
+
+![схема2](https://github.com/user-attachments/assets/8064286e-168a-4d4e-bb8d-71c5230d385f)
+
+
 <br>
 
 **Проект выполнили Базарова Эржена, Бордовская Наталия, Гусева Юлия, Максимова Ксения**
