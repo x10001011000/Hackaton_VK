@@ -6,7 +6,7 @@ def get_site_pages_text(site_name):
     hostname = "localhost"
     database = "cms"
     username = "postgres"
-    password = "12345"
+    password = "123456"
     port_id = 5432
 
     try:
