@@ -151,7 +151,7 @@ def main():
         "host": "localhost",
         "port": "5432",
         "user": "postgres",
-        "password": "123098"  # Замените на реальный пароль
+        "password": "123098"  
     }
 
     site_name = input("Введите название сайта: ")
