@@ -1,7 +1,7 @@
 # Hackaton_VK
 Чат-бот на базе LLM (llama 3.2) для поиска информации в VK Tek.
 
-• LLM/***llama.py*** - подключение к llama 3.2 <br>
+• LLM/***llm_connection.py*** - подключение к llama 3.2 <br>
 <br>
 • html_parser/***html_parser.py*** - извлечение текста из HTML-страниц, хранящихся в PostgreSQL <br>
 <br>
@@ -13,7 +13,16 @@
 ```bash
 pip install -r requirements.txt
 ```
-## Телеграм-бот
+## Установка Ollama 
+Скачивание с официального сайта *https://ollama.com/download*
+
+## Запуск локально (server)
+Файлы *llm_connection.py*, *html_parser.py*, *main.py*, *antispam.py* должны находиться в текущей директории
+```bash
+python main.py
+```
+
+## Телеграм-бот (client)
 @VKTekSearch_bot <br>
 *https://t.me/VKTekSearch_bot*
 ### Пример запроса 
