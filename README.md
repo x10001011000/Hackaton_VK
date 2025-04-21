@@ -46,7 +46,6 @@ python main.py
 <br>
 
 ## Логика работы программы (тизер решения)
-<br>
 
 <img width="404" alt="схема1" src="https://github.com/user-attachments/assets/88e11c30-f0b6-4584-a067-0f872b8afa74" />
 
@@ -54,8 +53,6 @@ python main.py
 <br>
 
 ## Схема антиспама
-
-<br>
 
 ![схема2](https://github.com/user-attachments/assets/8064286e-168a-4d4e-bb8d-71c5230d385f)
 
