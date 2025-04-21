@@ -32,3 +32,4 @@ pip install -r requirements.txt
 
 Более 10 миллионов посещателей annually посещают в этих музеях.
 ```
+![Диаграмма без названия drawio-3](https://github.com/user-attachments/assets/7bc7bdd6-ef67-414c-82f6-ec9867155fd4)
