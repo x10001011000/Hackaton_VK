@@ -2,3 +2,4 @@ psycopg2-binary
 beautifulsoup4
 langchain
 langchain-community
+ollama
