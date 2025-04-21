@@ -12,7 +12,8 @@
 pip install -r requirements.txt
 ```
 ## Телеграм-бот
-@__
+@VKTekSearch_bot
+*https://t.me/VKTekSearch_bot*
 ### Пример запроса 
 ```
 Сколько существует великих музеев мира?
